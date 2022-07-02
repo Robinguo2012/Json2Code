@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		"Json2Code::Json2CodePackageTests::ProductTarget" /* Json2CodePackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_30 /* Build configuration list for PBXAggregateTarget "Json2CodePackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_33 /* PBXTargetDependency */,
+			);
+			name = Json2CodePackageTests;
+			productName = Json2CodePackageTests;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		FA03E5B9281007A100B88D9C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03E5B8281007A100B88D9C /* Category.swift */; };
+		FA12CDC627F2E70500302DB6 /* DynamicJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA12CDC527F2E70500302DB6 /* DynamicJSON.swift */; };
+		FA12CDCB27F2F85800302DB6 /* Mustache in Frameworks */ = {isa = PBXBuildFile; productRef = FA12CDCA27F2F85800302DB6 /* Mustache */; };
+		FA12CDCF27F40C9F00302DB6 /* GenerateFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA12CDCE27F40C9F00302DB6 /* GenerateFile.swift */; };
+		FA20D85227FD848A00E2C624 /* CreateFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20D85127FD848A00E2C624 /* CreateFolder.swift */; };
+		FA7754E027F6EA37009159C9 /* ParseApiInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7754DF27F6EA37009159C9 /* ParseApiInfo.swift */; };
+		FA7754E727F9BFA3009159C9 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7754E627F9BFA3009159C9 /* Base.swift */; };
+		FA7754E927FA6C59009159C9 /* ApiInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7754E827FA6C59009159C9 /* ApiInfo.swift */; };
+		FA7754ED27FA8575009159C9 /* Json2CodeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7754EC27FA8575009159C9 /* Json2CodeUtils.swift */; };
+		FA7C02DC27F1F17C00DECF57 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C02DB27F1F17C00DECF57 /* Request.swift */; };
+		FAB69753280574EE002B71BB /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB69752280574EE002B71BB /* Language.swift */; };
+		FAB6975528057517002B71BB /* JsonFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB6975428057517002B71BB /* JsonFormat.swift */; };
+		FAB69757280596F5002B71BB /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB69756280596F5002B71BB /* Type.swift */; };
+		OBJ_21 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* main.swift */; };
+		OBJ_28 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_39 /* Json2CodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Json2CodeTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA7C02D927F1F02600DECF57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Json2Code::Json2Code";
+			remoteInfo = Json2Code;
+		};
+		FA7C02DA27F1F02600DECF57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Json2Code::Json2CodeTests";
+			remoteInfo = Json2CodeTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FA03E5B8281007A100B88D9C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		FA12CDC427F2E70400302DB6 /* DynamicJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicJSON.h; sourceTree = "<group>"; };
+		FA12CDC527F2E70500302DB6 /* DynamicJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicJSON.swift; sourceTree = "<group>"; };
+		FA12CDCE27F40C9F00302DB6 /* GenerateFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateFile.swift; sourceTree = "<group>"; };
+		FA20D85127FD848A00E2C624 /* CreateFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFolder.swift; sourceTree = "<group>"; };
+		FA7754DF27F6EA37009159C9 /* ParseApiInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseApiInfo.swift; sourceTree = "<group>"; };
+		FA7754E627F9BFA3009159C9 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		FA7754E827FA6C59009159C9 /* ApiInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiInfo.swift; sourceTree = "<group>"; };
+		FA7754EC27FA8575009159C9 /* Json2CodeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json2CodeUtils.swift; sourceTree = "<group>"; };
+		FA7C02DB27F1F17C00DECF57 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		FAB69752280574EE002B71BB /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		FAB6975428057517002B71BB /* JsonFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFormat.swift; sourceTree = "<group>"; };
+		FAB69756280596F5002B71BB /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
+		"Json2Code::Json2Code::Product" /* Json2Code */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = Json2Code; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Json2Code::Json2CodeTests::Product" /* Json2CodeTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = Json2CodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_12 /* Json2CodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json2CodeTests.swift; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		OBJ_22 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				FA12CDCB27F2F85800302DB6 /* Mustache in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FA7754E527F9BF8B009159C9 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				FA7754E627F9BFA3009159C9 /* Base.swift */,
+				FAB69756280596F5002B71BB /* Type.swift */,
+				FAB6975428057517002B71BB /* JsonFormat.swift */,
+				FAB69752280574EE002B71BB /* Language.swift */,
+				FA7754E827FA6C59009159C9 /* ApiInfo.swift */,
+				FA03E5B8281007A100B88D9C /* Category.swift */,
+			);
+			path = Parse;
+			sourceTree = "<group>";
+		};
+		OBJ_10 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* Json2CodeTests */,
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_11 /* Json2CodeTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_12 /* Json2CodeTests.swift */,
+			);
+			name = Json2CodeTests;
+			path = Tests/Json2CodeTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_13 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"Json2Code::Json2Code::Product" /* Json2Code */,
+				"Json2Code::Json2CodeTests::Product" /* Json2CodeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_10 /* Tests */,
+				OBJ_13 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* Json2Code */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_8 /* Json2Code */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_9 /* main.swift */,
+				FA7754EC27FA8575009159C9 /* Json2CodeUtils.swift */,
+				FA7C02DB27F1F17C00DECF57 /* Request.swift */,
+				FA7754DF27F6EA37009159C9 /* ParseApiInfo.swift */,
+				FA12CDCE27F40C9F00302DB6 /* GenerateFile.swift */,
+				FA20D85127FD848A00E2C624 /* CreateFolder.swift */,
+				FA7754E527F9BF8B009159C9 /* Parse */,
+				FA12CDC427F2E70400302DB6 /* DynamicJSON.h */,
+				FA12CDC527F2E70500302DB6 /* DynamicJSON.swift */,
+			);
+			name = Json2Code;
+			path = Sources/Json2Code;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"Json2Code::Json2Code" /* Json2Code */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_17 /* Build configuration list for PBXNativeTarget "Json2Code" */;
+			buildPhases = (
+				OBJ_20 /* Sources */,
+				OBJ_22 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Json2Code;
+			packageProductDependencies = (
+				FA12CDCA27F2F85800302DB6 /* Mustache */,
+			);
+			productName = Json2Code;
+			productReference = "Json2Code::Json2Code::Product" /* Json2Code */;
+			productType = "com.apple.product-type.tool";
+		};
+		"Json2Code::Json2CodeTests" /* Json2CodeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_35 /* Build configuration list for PBXNativeTarget "Json2CodeTests" */;
+			buildPhases = (
+				OBJ_38 /* Sources */,
+				OBJ_40 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_41 /* PBXTargetDependency */,
+			);
+			name = Json2CodeTests;
+			productName = Json2CodeTests;
+			productReference = "Json2Code::Json2CodeTests::Product" /* Json2CodeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Json2Code::SwiftPMPackageDescription" /* Json2CodePackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_24 /* Build configuration list for PBXNativeTarget "Json2CodePackageDescription" */;
+			buildPhases = (
+				OBJ_27 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Json2CodePackageDescription;
+			productName = Json2CodePackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		OBJ_1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftMigration = 9999;
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "Json2Code" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = OBJ_5;
+			packageReferences = (
+				FA12CDC927F2F85800302DB6 /* XCRemoteSwiftPackageReference "GRMustache" */,
+			);
+			productRefGroup = OBJ_13 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"Json2Code::Json2Code" /* Json2Code */,
+				"Json2Code::SwiftPMPackageDescription" /* Json2CodePackageDescription */,
+				"Json2Code::Json2CodePackageTests::ProductTarget" /* Json2CodePackageTests */,
+				"Json2Code::Json2CodeTests" /* Json2CodeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		OBJ_20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				FA7754E927FA6C59009159C9 /* ApiInfo.swift in Sources */,
+				FA12CDCF27F40C9F00302DB6 /* GenerateFile.swift in Sources */,
+				FA7754E027F6EA37009159C9 /* ParseApiInfo.swift in Sources */,
+				OBJ_21 /* main.swift in Sources */,
+				FA7C02DC27F1F17C00DECF57 /* Request.swift in Sources */,
+				FA7754E727F9BFA3009159C9 /* Base.swift in Sources */,
+				FA20D85227FD848A00E2C624 /* CreateFolder.swift in Sources */,
+				FAB69753280574EE002B71BB /* Language.swift in Sources */,
+				FA12CDC627F2E70500302DB6 /* DynamicJSON.swift in Sources */,
+				FA03E5B9281007A100B88D9C /* Category.swift in Sources */,
+				FAB69757280596F5002B71BB /* Type.swift in Sources */,
+				FAB6975528057517002B71BB /* JsonFormat.swift in Sources */,
+				FA7754ED27FA8575009159C9 /* Json2CodeUtils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_27 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_28 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_39 /* Json2CodeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		OBJ_33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Json2Code::Json2CodeTests" /* Json2CodeTests */;
+			targetProxy = FA7C02DA27F1F02600DECF57 /* PBXContainerItemProxy */;
+		};
+		OBJ_41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Json2Code::Json2Code" /* Json2Code */;
+			targetProxy = FA7C02D927F1F02600DECF57 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		OBJ_18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DRIVERKIT_DEPLOYMENT_TARGET = 19.0;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Json2Code.xcodeproj/Json2Code_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
+					"@executable_path",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = Json2Code;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DRIVERKIT_DEPLOYMENT_TARGET = 19.0;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Json2Code.xcodeproj/Json2Code_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
+					"@executable_path",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = Json2Code;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/ManifestAPI -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -package-description-version 5.5.0";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		OBJ_26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/ManifestAPI -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -package-description-version 5.5.0";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"SWIFT_PACKAGE=1",
+					"DEBUG=1",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "$(AVAILABLE_PLATFORMS)";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DRIVERKIT_DEPLOYMENT_TARGET = 19.0;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Json2Code.xcodeproj/Json2CodeTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = Json2CodeTests;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		OBJ_37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DRIVERKIT_DEPLOYMENT_TARGET = 19.0;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Json2Code.xcodeproj/Json2CodeTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = Json2CodeTests;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"SWIFT_PACKAGE=1",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "$(AVAILABLE_PLATFORMS)";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		OBJ_17 /* Build configuration list for PBXNativeTarget "Json2Code" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_18 /* Debug */,
+				OBJ_19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_2 /* Build configuration list for PBXProject "Json2Code" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_24 /* Build configuration list for PBXNativeTarget "Json2CodePackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_25 /* Debug */,
+				OBJ_26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_30 /* Build configuration list for PBXAggregateTarget "Json2CodePackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_31 /* Debug */,
+				OBJ_32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_35 /* Build configuration list for PBXNativeTarget "Json2CodeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_36 /* Debug */,
+				OBJ_37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA12CDC927F2F85800302DB6 /* XCRemoteSwiftPackageReference "GRMustache" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRMustache.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA12CDCA27F2F85800302DB6 /* Mustache */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA12CDC927F2F85800302DB6 /* XCRemoteSwiftPackageReference "GRMustache" */;
+			productName = Mustache;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = OBJ_1 /* Project object */;
+}
