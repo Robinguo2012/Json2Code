@@ -12,7 +12,6 @@ class Swagger {
         return []
     }
     
-    
     let apiJson: (String, JSON)
     let innerUrl: String
     
@@ -56,9 +55,9 @@ class Swagger {
         }
     }
     
-    var method: Method {
-        return Method.init(rawValue: apiJson.0.lowercased()) ?? Method.get
-    }
+//    var method: Method {
+//        return Method.init(rawValue: apiJson.0.lowercased()) ?? Method.get
+//    }
     
 //    var `return`: TypeEnum {
 //        let responseType = apiJson.1.responses.200.schema.originalRef.string!

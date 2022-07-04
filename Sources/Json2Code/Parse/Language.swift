@@ -13,6 +13,7 @@ enum Language: String, CaseIterable {
     case swift
     case java
     
+    
     func generatePlatformAPI(apis:[APIInterface], vertex: [String: UserDomain]) throws {
         
         do {
@@ -25,10 +26,12 @@ enum Language: String, CaseIterable {
     
     func generateAPI(apis: [APIInterface]) throws {
         
+        let mApis = apis.filterDuplicates(\.name)
+        
         let apiTemplate = try! Template(URL: self.apiTempFilePath)
         let endPoints = try! Template(URL: self.endPointTempFilePath)
         
-        try apis.sortSlice(by: \.module).map { (module, moduleApis) -> ( String, [String]) in
+        try mApis.sortSlice(by: \.module).map { (module, moduleApis) -> ( String, [String]) in
             let moduleApis = try moduleApis.map { api -> String in
                 let singleApi = api.generateSingleAPI(for: self)
                 return try apiTemplate.render(singleApi)
@@ -47,37 +50,6 @@ enum Language: String, CaseIterable {
         })
     }
     
-    
-    // 生成请求接口
-//    func generateAPI(apis:[APIInterface]) throws {
-//        // 生成API 信息
-//
-//        let apiTemplate = try! Template(URL: self.apiTempFilePath)
-//
-//        let endPoints = try! Template(URL: self.endPointTempFilePath)
-//
-//        let sortedApis = apis.sortSlice(by: \.module)
-//
-//        try sortedApis.map { (key: String, value: [APIInterface]) -> (String, [String])in
-//            let moduleApis = try value.map { api -> String in
-//                let singleApi = api.getApiInfo(language: self)
-//                return try apiTemplate.render(singleApi)
-//            }
-//            return (key, moduleApis)
-//        }.map { value -> (String, String) in
-//            let endPointValue:[String: Any] = [
-//                "description":value.0,
-//                "values":value.1
-//            ]
-//            let templateRes = try endPoints.render(endPointValue)
-//            return (value.0, templateRes)
-//
-//        }.forEach({ value in
-//            let dstFilePath = self.dstEndPointPath.appendingPathComponent("\(value.0).\(self.rawValue)")
-//            try! value.1.write(to: dstFilePath, atomically: true, encoding: .utf8)
-//        })
-//    }
-    
     // 生成模型数据
     func generateModel(domainList: [String: UserDomain]) throws {
         
@@ -86,8 +58,6 @@ enum Language: String, CaseIterable {
 //        var generateStatus: [String: Bool] = [:]
 
         // 先不区分input 和output 类型，统一为一种类型降低复杂度
-        
-
         let modelTemplate = try! Template(URL: modelTempFilePath)
 
         // 遍历每个接口，生成其中的model>> 这种方式有问题
@@ -143,7 +113,31 @@ enum Language: String, CaseIterable {
     }
 }
 
-
+//
+extension Language {
+    
+//    func formatExample(lan: Language, type: String, example: JSON) -> String {
+//        
+//        if lan == .swift {
+//            switch type {
+//            case "integer":
+//                return "\(example.int ?? 0)"
+//            case "string", "boolean", "object":
+//                return "\(type)"
+//            case "number":
+//                return "\(example.double ?? 0.0)"
+//            case "array":
+//                let items = dict["items"]?.dictionary!
+//                let item = items?["originalRef"]?.string ?? (items?["type"]?.string ?? "Any" + (items?["format"]?.string ?? "") )
+//                return "\(type)|\(item)"
+//                
+//            default:
+//                
+//            }
+//        }
+//        
+//    }
+}
 
 extension Language {
     

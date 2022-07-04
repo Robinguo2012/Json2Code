@@ -21,24 +21,24 @@ class Vertex {
     //    }
 }
 
-struct Edge: Hashable {
-    
-    var typeId: String
-    var propertyName: String
-    var isRequired: Bool
-    var description: String
-    var example: AnyHashable
-}
+//struct Edge: Hashable {
+//
+//    var typeId: String
+//    var propertyName: String
+//    var isRequired: Bool
+//    var description: String
+//    var example: AnyHashable
+//}
 
-enum Method: String {
-    case get = "get"
-    case post = "post"
-    case delete = "delete"
-    case put = "put"
-    case head = "head"
-    case options = "options"
-    case patch = "patch"
-}
+//enum Method: String {
+//    case get = "get"
+//    case post = "post"
+//    case delete = "delete"
+//    case put = "put"
+//    case head = "head"
+//    case options = "options"
+//    case patch = "patch"
+//}
 
 
 struct ParameterType {
@@ -68,6 +68,13 @@ struct APIInterface {
     var apiInfo: JSON   // api 信息
     var method: String
     
+    struct Param {
+        var name: String
+        var type: String
+        var path: String
+        var desc: String
+    }
+    
     // 方法名
     var name: String {
         // 链接中需要传参
@@ -93,24 +100,10 @@ struct APIInterface {
         let url = "/" + resultUrl.joined(separator: "/")
         
         return url
-        
-//        return paramArr.filter{ $0.dictionary!["in"] != "path" }.map{ $0["name"].string! }.joined(separator: ",")
-        
-//        let url = self.url.replacingCharacters(in: url.startIndex..<url.index(url.startIndex, offsetBy: 1), with: "")
-//        let pathSlice = url.components(separatedBy: "/")
-//
-//        return pathSlice.reduce("") { partialResult, next in
-//            if next.contains("{") {
-//                let next0 = next.replacingOccurrences(of: "{", with: "(")
-//                let next1 = next0.replacingOccurrences(of: "}", with: ")")
-//                return partialResult + "\\\(next1)"
-//            }
-//            return partialResult + next
-//        }
     }
     
     // 参数
-    var params_name: [String] {
+    private var params: [Param] {
         let paramArr = self.apiInfo.dictionary?["parameters"]?.array ?? []
         
         if paramArr.count == 0 {
@@ -120,6 +113,8 @@ struct APIInterface {
         return paramArr.map { json in
             let dict = json.dictionary!
             let name = dict["name"]?.string ?? ""
+            let path = dict["in"]?.string!
+            let desc = dict["description"]?.string!
             
             var realType: String = ""
             
@@ -152,8 +147,13 @@ struct APIInterface {
             }
             
 //            let required = (dict["required"]?.bool ?? true) ? "" : "?"
-            
-            return "\(name):\(realType)"
+            return Param(name: name, type: realType, path: path!, desc: desc!)
+        }
+    }
+    
+    var params_name: [String] {
+        return params.map { p in
+            return "\(p.name): \(p.type)"
         }
     }
     
@@ -162,16 +162,27 @@ struct APIInterface {
         return paramArr.filter{ $0.dictionary!["in"] != "path" }.map{ $0["name"].string! }.joined(separator: ",")
     }
     
+    var param_desc: [[String:String]] {
+        
+        return self.params.map { p in
+            return [
+                "name": p.name,
+                "type": p.type,
+                "desc": p.desc
+            ]
+        }
+    }
+    
     // 返回类型
-    var `return`: String {
+    private var returnType: Param {
         let res_200 = self.apiInfo.dictionary?["responses"]?.dictionary?["200"]!.dictionary
         let schema = res_200!["schema"]?.dictionary!
-        let type = schema!["originalRef"]?.string ?? ""
+        var type = schema!["originalRef"]?.string ?? ""
         
         if type == "Result" {
-            return "Result_"
+            type = "Result_"
         } else if type == "APIResult" {
-            return type
+            type = "APIResult"
         } else {
             // (?<=().+(?=))
 //            let patten = "(?<=«)(.+?)(?=»)"
@@ -182,18 +193,20 @@ struct APIInterface {
                 if res.hasPrefix("List") {
                     
                     let inners = res.regex(patten: patten).first!
-                    return "array|\(inners)"
+                    type = "array|\(inners)"
 //                    return type.typeMapper(lan: .swift)
                 } else {
                     let t0 = res.replacingOccurrences(of: "«", with: "<")
                     let t1 = t0.replacingOccurrences(of: "»", with: ">")
-                    return t1
+                    type = t1
                 }
                 
             } else {
-                return res
+                type = res
             }
         }
+        
+        return Param(name: "", type: type, path: "", desc: "")
     }
     
     // 描述
@@ -221,13 +234,29 @@ struct APIInterface {
             return "\(arr.first!):\(platformType!)"
         }.joined(separator: ", ")
         
+        let returnType = returnType.type.typeMapper(lan: lan).returnMapper(lan: lan)
+        
+        let param_desc = param_desc.map { value -> [String: String] in
+            var mDict = value
+            let type = value["type"]!
+            let platformType = type.typeMapper(lan: lan)
+            mDict["type"] = platformType
+            return mDict
+        }
+        
+        let returnDesc = [
+            "type": returnType
+        ]
+        
         apiInfo["func_name"] = name
         apiInfo["param_name"] = params
-        apiInfo["returnType"] = `return`.typeMapper(lan: lan)
+        apiInfo["returnType"] = returnType
         apiInfo["method"] = method.uppercased()
         apiInfo["requestUrl"] = requestUrl
         apiInfo["param_body"] = param_body
-        
+        apiInfo["desc"] = desc
+        apiInfo["paramsDesc"] = param_desc
+        apiInfo["returnDesc"] = returnDesc
         return apiInfo
     }
 }
@@ -305,12 +334,70 @@ struct UserDomain {
             genericsDeclare = "<\(genericsDeclare)>"
         }
         
+        var domain_name = domainName
+        if domainName == "Result" {
+            domain_name = "Result_"
+        }
+        
         return [
-            "title": domainName,
+            "title": domain_name,
             "properties": generateProps,
             "generics": genericsDeclare
         ]
     }
+}
+
+enum CastType {
+    case integer(String)
+    case string
+    case number(String)
+    case boolean
+    case object
+    case array(String)
+    case custom(String)
+    
+    init(rawValue: JSON) {
+        let dict = rawValue.dictionary!
+        let type = dict["type"]?.string ?? dict["originalRef"]?.string ?? ""
+
+        switch type {
+            
+        case "integer":
+            let format = dict["format"]?.string ?? ""
+            self = .integer(format)
+            
+        case "string":
+            self = Self.string
+            
+        case "boolean":
+            self = Self.boolean
+            
+        case "object":
+            self = Self.object
+            
+        case "number":
+            let format = dict["format"]?.string ?? "float"
+            self = .number(format)
+            
+        case "array":
+            let items = dict["items"]?.dictionary!
+            let item = items?["originalRef"]?.string ?? (items?["type"]?.string ?? "Any" + (items?["format"]?.string ?? "") )
+            self = .array(item)
+            
+        default:
+            // 自定义类型
+            if type.contains("«") {
+                
+                let temp0 = type.replacingOccurrences(of: "«", with: "<")
+                let temp1 = temp0.replacingOccurrences(of: "»", with: ">")
+                self = .custom(temp1)
+                
+            } else {
+                self = .custom(type)
+            }
+        }
+    }
+    
 }
 
 struct Property: Equatable {
@@ -321,7 +408,9 @@ struct Property: Equatable {
         }
     }
     
-    var example = ""
+    var example:JSON? {
+        return info.dictionary?["example"]
+    }
     
     var info: JSON
     
@@ -335,7 +424,7 @@ struct Property: Equatable {
         }
         return name
     }
-    
+        
     func formatType() -> String {
         let dict = info.dictionary!
         let type = dict["type"]?.string ?? dict["originalRef"]?.string ?? ""
