@@ -116,27 +116,34 @@ enum Language: String, CaseIterable {
 //
 extension Language {
     
-//    func formatExample(lan: Language, type: String, example: JSON) -> String {
-//        
-//        if lan == .swift {
-//            switch type {
-//            case "integer":
-//                return "\(example.int ?? 0)"
-//            case "string", "boolean", "object":
-//                return "\(type)"
-//            case "number":
-//                return "\(example.double ?? 0.0)"
-//            case "array":
-//                let items = dict["items"]?.dictionary!
-//                let item = items?["originalRef"]?.string ?? (items?["type"]?.string ?? "Any" + (items?["format"]?.string ?? "") )
-//                return "\(type)|\(item)"
-//                
-//            default:
-//                
-//            }
-//        }
-//        
-//    }
+    func formatExample(lan: Language, type: String, example: JSON) -> String {
+        
+        if lan == .swift {
+            switch type {
+            case "integer":
+                return "\(example.int ?? 0)"
+            case "string":
+                return "\"\(type)\""
+            case "boolean":
+                return "\((example.bool ?? false) ? "true": "false")"
+                
+            case "number":
+                return "\(example.double ?? 0.0)"
+                
+            case "object":
+                return ""
+                
+            case "array":
+                let items = dict["items"]?.dictionary!
+                let item = items?["originalRef"]?.string ?? (items?["type"]?.string ?? "Any" + (items?["format"]?.string ?? "") )
+                return "\(type)|\(item)"
+                
+            default:
+                
+            }
+        }
+        
+    }
 }
 
 extension Language {
