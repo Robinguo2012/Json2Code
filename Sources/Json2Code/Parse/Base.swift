@@ -62,7 +62,7 @@ struct ParameterType {
 /**
  生成特定格式的json 文件，如swagger 和postman
  */
-struct APIInterface {
+struct APIInterface: Identifiable {
     
     var url: String     // 请求参数
     var apiInfo: JSON   // api 信息
@@ -74,6 +74,12 @@ struct APIInterface {
         var path: String
         var desc: String
     }
+    
+    typealias ID = String
+    var id: ID {
+        return name + param_body
+    }
+    
     
     // 方法名
     var name: String {
@@ -281,6 +287,8 @@ struct UserDomain {
         var genericsCount = 0
         
         let sortSlice = props.sortSlice(by: \.name)
+        var live:[String] = []
+        
         for prop in sortSlice {
             
             var correctProps:[String: String] = [:]
@@ -321,8 +329,13 @@ struct UserDomain {
                 correctProps["type"] = type
             }
             
+            let rType = correctProps["type"]
             correctProps["param_desc"] = prop.value.first!.desc
+            let value = lan.formatExample(type: rType ?? "", example: prop.value.first?.example)
+            let exampleItem = "\(prop.key): \(value)"
+            live.append(exampleItem)
             
+            correctProps["live"] = lan.formatExample(type: rType ?? "", example: prop.value.first?.example)
             generateProps.append(correctProps)
         }
         
@@ -342,63 +355,64 @@ struct UserDomain {
         return [
             "title": domain_name,
             "properties": generateProps,
-            "generics": genericsDeclare
+            "generics": genericsDeclare,
+            "live": live.joined(separator: ",")
         ]
     }
 }
 
-enum CastType {
-    case integer(String)
-    case string
-    case number(String)
-    case boolean
-    case object
-    case array(String)
-    case custom(String)
-    
-    init(rawValue: JSON) {
-        let dict = rawValue.dictionary!
-        let type = dict["type"]?.string ?? dict["originalRef"]?.string ?? ""
-
-        switch type {
-            
-        case "integer":
-            let format = dict["format"]?.string ?? ""
-            self = .integer(format)
-            
-        case "string":
-            self = Self.string
-            
-        case "boolean":
-            self = Self.boolean
-            
-        case "object":
-            self = Self.object
-            
-        case "number":
-            let format = dict["format"]?.string ?? "float"
-            self = .number(format)
-            
-        case "array":
-            let items = dict["items"]?.dictionary!
-            let item = items?["originalRef"]?.string ?? (items?["type"]?.string ?? "Any" + (items?["format"]?.string ?? "") )
-            self = .array(item)
-            
-        default:
-            // 自定义类型
-            if type.contains("«") {
-                
-                let temp0 = type.replacingOccurrences(of: "«", with: "<")
-                let temp1 = temp0.replacingOccurrences(of: "»", with: ">")
-                self = .custom(temp1)
-                
-            } else {
-                self = .custom(type)
-            }
-        }
-    }
-    
-}
+//enum CastType {
+//    case integer(String)
+//    case string
+//    case number(String)
+//    case boolean
+//    case object
+//    case array(String)
+//    case custom(String)
+//
+//    init(rawValue: JSON) {
+//        let dict = rawValue.dictionary!
+//        let type = dict["type"]?.string ?? dict["originalRef"]?.string ?? ""
+//
+//        switch type {
+//
+//        case "integer":
+//            let format = dict["format"]?.string ?? ""
+//            self = .integer(format)
+//
+//        case "string":
+//            self = Self.string
+//
+//        case "boolean":
+//            self = Self.boolean
+//
+//        case "object":
+//            self = Self.object
+//
+//        case "number":
+//            let format = dict["format"]?.string ?? "float"
+//            self = .number(format)
+//
+//        case "array":
+//            let items = dict["items"]?.dictionary!
+//            let item = items?["originalRef"]?.string ?? (items?["type"]?.string ?? "Any" + (items?["format"]?.string ?? "") )
+//            self = .array(item)
+//
+//        default:
+//            // 自定义类型
+//            if type.contains("«") {
+//
+//                let temp0 = type.replacingOccurrences(of: "«", with: "<")
+//                let temp1 = temp0.replacingOccurrences(of: "»", with: ">")
+//                self = .custom(temp1)
+//
+//            } else {
+//                self = .custom(type)
+//            }
+//        }
+//    }
+//
+//}
 
 struct Property: Equatable {
     var name: String

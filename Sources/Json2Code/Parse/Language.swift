@@ -26,7 +26,7 @@ enum Language: String, CaseIterable {
     
     func generateAPI(apis: [APIInterface]) throws {
         
-        let mApis = apis.filterDuplicates(\.name)
+        let mApis = apis.filterDuplicates(\.id)
         
         let apiTemplate = try! Template(URL: self.apiTempFilePath)
         let endPoints = try! Template(URL: self.endPointTempFilePath)
@@ -53,24 +53,24 @@ enum Language: String, CaseIterable {
     // 生成模型数据
     func generateModel(domainList: [String: UserDomain]) throws {
         
-//        var inputModels:[String: ([[String: Any]],[String])] = [:]
-//        var outputModels:[String: ([[String: Any]],[String])] = [:]
-//        var generateStatus: [String: Bool] = [:]
-
+        //        var inputModels:[String: ([[String: Any]],[String])] = [:]
+        //        var outputModels:[String: ([[String: Any]],[String])] = [:]
+        //        var generateStatus: [String: Bool] = [:]
+        
         // 先不区分input 和output 类型，统一为一种类型降低复杂度
         let modelTemplate = try! Template(URL: modelTempFilePath)
-
+        
         // 遍历每个接口，生成其中的model>> 这种方式有问题
         try domainList.values.map { domain -> (title: String, renderTemplate: String) in
-             
-             let renderRes = try modelTemplate.render(domain.domainInfo(lan: self))
-
-             return (title: domain.domainName, renderTemplate: renderRes)
-             
-         }.forEach({ value in
-             let dstFilePath = self.dstOutputPath.appendingPathComponent("\(value.0).\(self.rawValue)")
-             try! value.renderTemplate.write(to: dstFilePath, atomically: true, encoding: .utf8)
-         })
+            
+            let renderRes = try modelTemplate.render(domain.domainInfo(lan: self))
+            
+            return (title: domain.domainName, renderTemplate: renderRes)
+            
+        }.forEach({ value in
+            let dstFilePath = self.dstOutputPath.appendingPathComponent("\(value.0).\(self.rawValue)")
+            try! value.renderTemplate.write(to: dstFilePath, atomically: true, encoding: .utf8)
+        })
     }
     
     func generateSwiftFile(modelMap: [String: ([[String: Any]],[String])], dstFilePath: URL) throws {
@@ -84,7 +84,7 @@ enum Language: String, CaseIterable {
                 let genericStr = "\(propertyInfo):Decodable"
                 generics.append(genericStr)
             }
-        
+            
             var genericStr = ""
             if generics.count > 0 {
                 genericStr = "<" + generics.joined(separator: ",") + ">"
@@ -116,33 +116,53 @@ enum Language: String, CaseIterable {
 //
 extension Language {
     
-    func formatExample(lan: Language, type: String, example: JSON) -> String {
-        
-        if lan == .swift {
-            switch type {
-            case "integer":
-                return "\(example.int ?? 0)"
-            case "string":
-                return "\"\(type)\""
-            case "boolean":
-                return "\((example.bool ?? false) ? "true": "false")"
+    func formatExample(type: String, example: JSON?) -> String {
+            
+        if self == .swift {
+            
+            if type.contains("[") {
+                let arr = example?.array ?? []
+                let elemType = type.regex(patten: "(?<=\\[).+(?=\\])").first!
+
+                if arr.count > 0 {
+                    // 这种一般都是基本类型
+                    let arrStr = arr.map { formatExample(type: elemType, example: $0) }.joined(separator: ",")
+                    return "[\(arrStr)]"
+                } else {
+                    return "[.live]"
+                }
                 
-            case "number":
-                return "\(example.double ?? 0.0)"
                 
-            case "object":
-                return ""
+                // "(?<=«).+(?=»)"
                 
-            case "array":
-                let items = dict["items"]?.dictionary!
-                let item = items?["originalRef"]?.string ?? (items?["type"]?.string ?? "Any" + (items?["format"]?.string ?? "") )
-                return "\(type)|\(item)"
-                
-            default:
-                
+                //                let items = dict["items"]?.dictionary!
+                //                let item = items?["originalRef"]?.string ?? (items?["type"]?.string ?? "Any" + (items?["format"]?.string ?? "") )
             }
+            
+            if type.contains("Int") {
+                return "\(example?.int ?? 0)"
+            }
+            
+            if type.contains("String") {
+                return "\"\(example?.string ?? "")\""
+            }
+            
+            if type.contains("Bool") {
+                return "\((example?.bool ?? false) ? "true": "false")"
+            }
+            
+            if type.contains("Float") || type.contains("Double") {
+                return "\(example?.double ?? 0.0)"
+            }
+            
+            if type.contains("object") {
+                return ""
+            }
+            
+            return ".live"
+        } else {
+            return ""
         }
-        
     }
 }
 
@@ -161,7 +181,7 @@ extension Language {
     
     var endPointTempFilePath: URL {
         let tempfilePath = toCodeUtils.parent.appendingPathComponent("Template").appendingPathComponent("\(self.rawValue)")
-
+        
         switch self {
         case .swift:
             return tempfilePath.appendingPathComponent("Endpoint.mustache")
@@ -172,7 +192,7 @@ extension Language {
     
     var modelTempFilePath: URL {
         let tempfilePath = toCodeUtils.parent.appendingPathComponent("Template").appendingPathComponent("\(self.rawValue)")
-
+        
         switch self {
         case .swift:
             return tempfilePath.appendingPathComponent("Domain.mustache")
